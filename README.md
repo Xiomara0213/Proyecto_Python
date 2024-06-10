@@ -49,6 +49,10 @@ Proyecto_Python/
 │   │   ├── __init__.py
 │   │   └── decorators.py
 │   │
+│   ├── main/
+│   │   ├── __init__.py
+│   │   └── main.py
+│   │
 │   └── scraping/
 │       ├── __init__.py
 │       └── scraper.py
@@ -77,3 +81,40 @@ Para la ejecucion del Analisis de Datos lo que se realiza es
 python .\src\analysis\analysis.py
 ````
 Esto genera los archivos CSV/XLSX en la carpeta PROCESSED ubicada dentro de la carpeta DATA
+
+## Decoradores Personalizados
+El archivo "decorators.py" contiene una serie de decoradores que se utilizan en este proyecto para realizar algunas tareas.
+
+- "timeit": Decorador que mide el tiempo de ejecución de una función.
+- "logit": Decorador que registra eventos antes y después de la ejecución de una función.
+- "retry": Decorador que reintenta automáticamente una función un número configurable de veces si falla.
+
+Estos decoradores se importan y aplican a las funciones relevantes en otros archivos del proyecto como "main.py" y "analysis.py", para agregar funcionalidades adicionales.
+
+## Interfaz de Usuario
+Contiene la lógica principal para ejecutar el proyecto, ya sea a través de la línea de comandos (CLI) o mediante una interfaz gráfica de usuario (GUI).
+
+### CLI
+La función que maneja la ejecución de la herramienta a través de la línea de comandos es "run_cli"
+### GUI
+La función que maneja la ejecución de la herramienta a través de la interfaz gráfica de usuario es "run_gui"
+
+#### Uso
+Para ejecutar la herramienta desde la línea de comandos, se puede utilizar el siguiente comando:
+
+````bash
+python src/main/main.py data/raw/products.csv --output_path data/processed/cleaned_products.csv
+````
+Para ejecutar la herramienta utilizando la interfaz gráfica de usuario, se puede utilizar el siguiente comando:
+````bash
+python main.py --gui
+````
+
+## Analisis Exploratorio de Datos
+El archivo "exploration.ipynb" es un cuaderno de "Jupyter" que contiene la exploración de datos. En este cuaderno, se realizan diversas operaciones de análisis exploratorio de datos para comprender mejor la naturaleza y la distribución de los datos.
+
+Para ejecutar el cuaderno y revisar la exploración de datos, simplemente abre el archivo en un entorno de "Jupyter" Notebook.
+
+```bash
+jupyter notebook exploration.ipynb
+````
