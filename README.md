@@ -26,6 +26,7 @@ Este proyecto consiste en un conjunto de herramientas para el análisis de datos
 - nbformat
 
 # Arquitectura de las Carpetas
+````bash
 Proyecto_Python/
 │
 ├── data/
@@ -54,6 +55,7 @@ Proyecto_Python/
 │
 ├── README.md
 └── dependencies.txt
+````
 
 # Instalación
 Para instalar las dependencias creamos un archivo TXT en el cual guardamos todas las dependencias para una instalacion mas rapida. Su metodo de instalacion es utilizando "PIP":
