@@ -16,7 +16,7 @@ Este proyecto consiste en un conjunto de herramientas para el análisis de datos
 - Guardado de Datos: La herramienta "save_clean_data" guarda los datos limpios en archivos CSV o Excel.
 
 # Requisitos
-- Python 3.7
+- Python 3.7+
 - pandas
 - beautifulsoup4
 - requests
@@ -94,12 +94,10 @@ Estos decoradores se importan y aplican a las funciones relevantes en otros arch
 ## Interfaz de Usuario
 Contiene la lógica principal para ejecutar el proyecto, ya sea a través de la línea de comandos (CLI) o mediante una interfaz gráfica de usuario (GUI).
 
-### CLI
-La función que maneja la ejecución de la herramienta a través de la línea de comandos es "run_cli"
-### GUI
-La función que maneja la ejecución de la herramienta a través de la interfaz gráfica de usuario es "run_gui"
+La función que maneja la ejecución de la herramienta a través de la línea de comandos es: "run_cli"
 
-#### Uso
+La función que maneja la ejecución de la herramienta a través de la interfaz gráfica de usuario es: "run_gui"
+
 Para ejecutar la herramienta desde la línea de comandos, se puede utilizar el siguiente comando:
 
 ````bash
@@ -109,7 +107,6 @@ Para ejecutar la herramienta utilizando la interfaz gráfica de usuario, se pued
 ````bash
 python main.py --gui
 ````
-
 ## Analisis Exploratorio de Datos
 El archivo "exploration.ipynb" es un cuaderno de "Jupyter" que contiene la exploración de datos. En este cuaderno, se realizan diversas operaciones de análisis exploratorio de datos para comprender mejor la naturaleza y la distribución de los datos.
 
