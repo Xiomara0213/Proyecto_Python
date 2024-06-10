@@ -13,7 +13,7 @@ Este proyecto consiste en un conjunto de herramientas para el análisis de datos
 
 - Análisis de Datos: La herramienta "analyze_data" realiza un análisis básico de los datos, incluyendo un resumen estadístico y la identificación de los productos con los precios más altos.
 
-- Guardado de Datos: La herramienta "save_clean_data" guarda los datos limpios en archivos CSV o Excel.
+- Guardado de Datos: La herramienta "save_clean_data" guarda los datos limpios en archivos CSV o XLSX.
 
 # Requisitos
 - Python 3.7+
@@ -23,7 +23,7 @@ Este proyecto consiste en un conjunto de herramientas para el análisis de datos
 - matplotlib
 - seaborn
 - plotly
-- nbformat
+- nbformat(no funciono en el notebook)
 
 # Arquitectura de las Carpetas
 ````bash
@@ -62,7 +62,8 @@ Proyecto_Python/
 ````
 
 # Instalación
-Para instalar las dependencias creamos un archivo TXT en el cual guardamos todas las dependencias para una instalacion mas rapida. Su metodo de instalacion es utilizando "PIP":
+Para instalar las dependencias creamos un archivo TXT en el cual guardamos todas las dependencias para una instalacion mas rapida. 
+Su metodo de instalacion es utilizando "PIP":
 ````bash
 pip install -r dependencies.txt
 ````
