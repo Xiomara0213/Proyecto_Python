@@ -5,15 +5,40 @@ import logging
 import time
 
 def fetch_page(url):
-    #Obtiene el contenido de una pagina
-    response = requests.get(url) #Solicitud GET a la url proporcionada
-    if response.status_code == 200:
-        return response.content #Devuelve el contenido de la pagina
-    else:
-        raise Exception(f"Failed to fetch page: {url}") #Excepcion por si falla la solicitud
+    """
+    Obtiene el contenido de una pagina
+    
+    Args:
+        url (str): La URL de la página web a obtener
+
+    Returns:
+        bytes: El contenido de la página web en formato binario
+    """
+    max_retries = 5
+    retry_delay = 2
+    for attempt in range(max_retries):
+        try:
+            response = requests.get(url) #Solicitud GET a la url proporcionada
+            if response.status_code == 200:
+                return response.content #Devuelve el contenido de la pagina
+            else:
+                logging.error(f"Failed to fetch page: {url} with status code {response.status_code}")
+        except requests.exceptions.RequestException as e:
+            logging.error(f"Request failed: {e}")
+        logging.info(f"Retrying... (attempt {attempt + 1}/{max_retries})")
+        time.sleep(retry_delay)
+    raise Exception(f"Failed to fetch page after {max_retries} attempts: {url}")
 
 def parse_product(product):
-    #Analiza detalles de un producto
+    """
+    Analiza detalles de un producto de una pagina web
+
+    Args:
+        product (BeautifulSoup.element.Tag): El elemento HTML que representa un producto
+
+    Returns:
+        dict: Un diccionario con el título, descripción y precio del producto
+    """      
     title = product.find("a", class_="title").text.strip() #Encuentra y obtiene el titulo del producto
     description = product.find("p", class_="description").text.strip() #Encuentra y obtiene la descripcion del producto
     price = product.find("h4", class_="price").text.strip() #Encuentra y obtiene el precio del producto
@@ -24,7 +49,15 @@ def parse_product(product):
     }
     
 def scrape(url):
-    #Funcion scraping
+    """
+    Realiza el scraping de una página web para obtener los datos de productos
+
+    Args:
+        url (str): La URL de la página web a escrapear
+
+    Returns:
+        pandas.DataFrame: Un DataFrame de pandas con los datos de los productos
+    """
     page_content = fetch_page(url) #Otiene el codigo de la pagina
     if page_content is not None:
         soup = BeautifulSoup(page_content, 'html.parser') #Analiza el contenido de la pagina
@@ -41,6 +74,16 @@ def scrape(url):
         return pd.DataFrame() 
     
 def scrape_all_pages(base_url, num_pages):
+    """
+    Realiza el scraping de múltiples páginas web para obtener los datos de productos
+
+    Args:
+        base_url (str): La URL base de la tienda en línea
+        num_pages (int): El número total de páginas a escrapear
+
+    Returns:
+        pandas.DataFrame: Un DataFrame de pandas con los datos de los productos de todas las páginas
+    """
     all_products = pd.DataFrame() #Crea un DataFrame para almacenar los datos
     for page_number in range(1, num_pages + 1):
           #Construccion de la URL de la pagina
@@ -66,3 +109,4 @@ if __name__ == "__main__":
 
     #Guardar los datos en CSV sin el indice
     df.to_csv('data/raw/products.csv', index = False)
+    df.to_csv('data/raw/scraped_all_pages.csv', index = False)
